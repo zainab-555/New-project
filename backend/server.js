@@ -7,7 +7,12 @@ import OpenAI from 'openai';
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || /^http:\/\/localhost:\d+$/.test(origin)) return callback(null, true);
+    return callback(new Error('This origin is not allowed.'));
+  },
+}));
 app.use(express.json({ limit: '1mb' }));
 
 const classSchema = new mongoose.Schema({
