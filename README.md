@@ -1,4 +1,4 @@
-# 🎓 CampusHub — Smart College Survival Assistant
+# 🎓 Smart College Assistant Survival
 
 A complete, modern college companion web application built with **React**, **Vite**, **Node.js/Express**, **MongoDB**, and **AI Doubt Solver**.
 
