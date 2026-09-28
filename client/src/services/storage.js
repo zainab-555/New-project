@@ -26,7 +26,7 @@ export const DEMO_STUDENT = {
   branch: 'Computer Science & Engineering',
   semester: 6,
   semesterLabel: '6th Semester',
-  email: 'aman.sharma@nit.edu.in',
+  email: 'student@campus.edu',
   targetAttendance: 75,
   targetCgpa: 8.5,
 };
@@ -40,8 +40,9 @@ export const DEMO_FACULTY = {
   department: 'Computer Science & Engineering',
   college: 'National Institute of Technology',
   subjectsTaught: ['Data Structures & Algorithms', 'C Programming', 'Minor Capstone Project'],
-  email: 'ajaz.warsi@nit.edu.in',
+  email: 'faculty@campus.edu',
   room: 'Faculty Block B - 302',
+  photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
 };
 
 // Seed student roster for faculty attendance
@@ -463,9 +464,9 @@ export const storage = {
   getAuthUser: () => {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.AUTH_USER);
-      return data ? JSON.parse(data) : DEMO_STUDENT;
+      return data ? JSON.parse(data) : null;
     } catch {
-      return DEMO_STUDENT;
+      return null;
     }
   },
   saveAuthUser: (user) => {

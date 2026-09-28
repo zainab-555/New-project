@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function Sidebar({
   activeScreen,
@@ -48,6 +47,8 @@ export default function Sidebar({
           .slice(0, 2)
       : 'U';
   };
+
+  const profilePhoto = user?.photo || user?.avatar || null;
 
   return (
     <aside className="app-sidebar">
@@ -110,9 +111,17 @@ export default function Sidebar({
           onClick={() => setActiveScreen('profile')}
           style={{ cursor: 'pointer' }}
         >
-          <div className="avatar-circle" style={{ background: isFaculty ? 'linear-gradient(135deg, #f59e0b, #d97706)' : undefined }}>
-            {getInitials(user?.name)}
-          </div>
+          {profilePhoto ? (
+            <img
+              className="avatar-image"
+              src={profilePhoto}
+              alt={user?.name || 'User'}
+            />
+          ) : (
+            <div className="avatar-circle" style={{ background: isFaculty ? 'linear-gradient(135deg, #f59e0b, #d97706)' : undefined }}>
+              {getInitials(user?.name)}
+            </div>
+          )}
           <div className="sidebar-user-info">
             <strong>{user?.name || 'User'}</strong>
             <small>{isFaculty ? (user?.designation || 'Faculty') : (user?.enrollmentNo || 'Student')}</small>

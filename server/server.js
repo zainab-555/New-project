@@ -122,6 +122,43 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
+// ==================== Auth API (Demo & Credentials) ====================
+app.post('/api/auth/login', (req, res) => {
+  const { email, password, role } = req.body || {};
+  const isFaculty = role === 'faculty' || (email && (email.toLowerCase().includes('faculty') || email.toUpperCase().startsWith('FAC')));
+
+  if (isFaculty) {
+    return res.json({
+      success: true,
+      user: {
+        id: 'FAC-CSE-01',
+        facultyId: 'FAC-CSE-01',
+        name: 'Ajaz Hussain Warsi',
+        role: 'faculty',
+        email: email || 'faculty@campus.edu',
+        designation: 'Associate Professor',
+        department: 'Computer Science & Engineering',
+        college: 'National Institute of Technology',
+      },
+    });
+  }
+
+  return res.json({
+    success: true,
+    user: {
+      id: '21BCSE042',
+      enrollmentNo: '21BCSE042',
+      name: 'Aman Sharma',
+      role: 'student',
+      email: email || 'student@campus.edu',
+      semester: 6,
+      semesterLabel: '6th Semester',
+      branch: 'Computer Science & Engineering',
+      college: 'National Institute of Technology',
+    },
+  });
+});
+
 // ==================== 1. Classes API ====================
 app.get('/api/classes', async (_req, res, next) => {
   try {
